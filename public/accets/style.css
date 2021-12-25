@@ -1,0 +1,27 @@
+.nam_menu li {
+    float: right;
+}
+
+.nam_menu {
+    display: block !important;
+    direction: rtl;
+    float: right;
+    text-align: right;
+    width: 100%;
+}
+
+hr {
+    width: 100%;
+}
+
+.nav .active{
+    color: #000;
+    background-color: #0dcaf0;
+    border-color: #0dcaf0;
+    display: inline-block;
+    font-weight: 400;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    border-radius: .25rem;
+}
