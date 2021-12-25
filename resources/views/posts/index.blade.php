@@ -17,7 +17,7 @@
             <th scope="col">ردیف</th>
             <th scope="col">عنوان</th>
             <th scope="col">متن</th>
-            <th scope="col">مشاهده</th>
+            <th scope="col">مشاهده</th> 
             <th scope="col">ویرایش</th>
             <th scope="col">حذف</th>
         </tr>
