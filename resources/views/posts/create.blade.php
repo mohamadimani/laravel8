@@ -1,12 +1,15 @@
 @extends('layouts.base')
 
 @section('head')
-<title>New Posts</title>
+New Posts
+@endsection
+
+@section('cssFiles')
 @endsection
 
 @section('content')
 <h2>New Posts !</h2>
-<form action="{{route('insertPost')}}" class="form-control" method="post">
+<form action="{{route('posts.store')}}" class="form-control" method="post">
     @csrf
     <div>
         <label for="title">title</label>
@@ -21,4 +24,7 @@
         <input type="submit" name="submit" value="submit" class="form-control btn btn-info">
     </div>
 </form>
+@endsection
+
+@section('jsFiles')
 @endsection

@@ -17,47 +17,52 @@ class PostController extends Controller
         return view('posts.index', compact('posts'));
     }
 
-    public function newPost()
+    public function create()
     {
         return view('posts.create');
     }
 
    
 
-    public function editPost(Post $postId)
+    public function edit(Post $post)
     {
         // $post = Post::find($postId);
         // $post = Post::findOrFail($postId);
         // $post =  $postId;
         // dd($postId);
-        return view('posts.edit', compact('postId'));
+        return view('posts.edit', compact('post'));
     }
 
-    public function insertPost(Request $request)
+    public function store(Request $request)
     {
         $data = self::infoValidation();
 
         Post::create($data);
         // return redirect('posts/createPostForm');
-        return redirect()->route('posts')->with('success', 'با موفقیت ذخیره شد.');
+        return redirect()->route('posts.index')->with('success', 'با موفقیت ذخیره شد.');
         // return back()->with('success','با موفقیت ذخیره شد.');
         // return back()->withSuccess('با موفقیت ذخیره شد.');
     }
 
-    public function updatePost(Post $postId, Request $request)
+    public function update(Post $post, Request $request)
     {
         $data = self::infoValidation();
-        $postId->update($data);
-        return redirect()->route('posts')->with('success', 'با موفقیت ذخیره شد.');
+        $post->update($data);
+        return redirect()->route('posts.index')->with('success', 'با موفقیت ذخیره شد.');
         // return redirect('posts/createPostForm');
         // return back()->with('success','با موفقیت ذخیره شد.');
         // return back()->withSuccess('با موفقیت ذخیره شد.');
     }
-    public function deletePost(Post $postId)
-    {
 
-        $postId->delete();
-        return redirect()->route('posts')->with('success', 'با موفقیت حذف شد.');
+    public function show(Post $post)
+    {
+        return view('posts.post' , compact('post'));
+    }
+
+    public function destroy(Post $post)
+    {
+        $post->delete();
+        return redirect()->route('posts.index')->with('success', 'با موفقیت حذف شد.');
         // return redirect('posts/createPostForm');
         // return back()->with('success','با موفقیت ذخیره شد.');
         // return back()->withSuccess('با موفقیت ذخیره شد.');
