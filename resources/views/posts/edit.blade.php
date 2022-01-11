@@ -21,6 +21,10 @@ Edit Posts
         <textarea name="content" id="content" cols="30" rows="10" class="form-control">{{ old('content') ?? $post->content }}</textarea>
     </div>
     <div>
+        <label for="image">Image</label>
+        <input type="file" name="image" id="image" class="form-control">
+    </div>
+    <div>
         <label for=" "> </label>
         <input type="submit" name="submit" value="submit" class="form-control btn btn-info">
     </div>
