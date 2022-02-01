@@ -9,7 +9,7 @@ New Posts
 
 @section('content')
 <h2>New Posts !</h2>
-<form action="{{route('posts.store')}}" class="form-control" method="post">
+<form action="{{route('posts.store')}}" class="form-control" method="post" enctype="multipart/form-data">
     @csrf
     <div>
         <label for="title">title</label>
@@ -19,7 +19,7 @@ New Posts
         <label for="content">text</label>
         <textarea name="content" id="content" cols="30" rows="10" class="form-control">{{old('content')}}</textarea>
     </div>
-    <div>
+    <div class="row">
         <label for="image">Image</label>
         <input type="file" name="image" id="image" class="form-control">
     </div>

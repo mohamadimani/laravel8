@@ -22,7 +22,7 @@ class PostController extends Controller
         return view('posts.create');
     }
 
-   
+
 
     public function edit(Post $post)
     {
@@ -46,7 +46,10 @@ class PostController extends Controller
 
     public function update(Post $post, Request $request)
     {
-        $data = self::infoValidation();
+        $data = self::infoValidation(); 
+        if ($post->image) {
+            deleteFile($post->image);
+        }
         $post->update($data);
         return redirect()->route('posts.index')->with('success', 'با موفقیت ذخیره شد.');
         // return redirect('posts/createPostForm');
@@ -56,11 +59,14 @@ class PostController extends Controller
 
     public function show(Post $post)
     {
-        return view('posts.post' , compact('post'));
+        return view('posts.post', compact('post'));
     }
 
     public function destroy(Post $post)
     {
+        if ($post->image) {
+            deleteFile($post->image);
+        }
         $post->delete();
         return redirect()->route('posts.index')->with('success', 'با موفقیت حذف شد.');
         // return redirect('posts/createPostForm');
@@ -70,9 +76,12 @@ class PostController extends Controller
 
     public static function infoValidation()
     {
-        return request()->validate([
+        $data = request()->validate([
             'title' => 'required|string|min:5|max:200',
-            'content' => 'required|string|between:30,1000'
+            'content' => 'required|string|between:30,1000',
+            'image' => 'nullable|image|max:10000'
         ]);
+        $data['image'] = uploadImage($data['image']);;
+        return $data;
     }
 }

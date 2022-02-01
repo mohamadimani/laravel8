@@ -98,6 +98,7 @@ return [
     'attributes' => array(
         'title' => 'عنوان',
         'content' => 'محتوا',
+        'image' => 'فایل آپلودی',
     ),
 
 

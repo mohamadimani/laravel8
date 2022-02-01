@@ -9,7 +9,7 @@ Edit Posts
 
 @section('content')
 <h2>New Posts !</h2>
-<form action="{{route('posts.update' , $post->id)}}" class="form-control" method="post">
+<form action="{{route('posts.update' , $post->id)}}" class="form-control" method="post" enctype="multipart/form-data"   >
     @csrf
     @method('PUT')
     <div>
