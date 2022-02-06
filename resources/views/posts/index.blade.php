@@ -9,6 +9,16 @@ Posts list
     table.table td {
         text-align: center;
     }
+
+    .postimage:hover {
+        transform: scale(2);
+        transition: 1s;
+    }
+
+    .postimage {
+        width: 100px;
+        padding: 5px;
+    }
 </style>
 @endsection
 
@@ -20,7 +30,8 @@ Posts list
             <th scope="col">ردیف</th>
             <th scope="col">عنوان</th>
             <th scope="col">متن</th>
-            <th scope="col">مشاهده</th> 
+            <th scope="col">تصویر</th>
+            <th scope="col">مشاهده</th>
             <th scope="col">ویرایش</th>
             <th scope="col">حذف</th>
         </tr>
@@ -31,6 +42,11 @@ Posts list
             <th scope="row">{{$key+1}}</th>
             <td>{{$post->title}}</td>
             <td>{{shorterText($post->content)}}</td>
+            @if($post->image)
+            <td><img src="{{asset('storage/' .  $post->image)}}" alt="" class="form-control postimage"></td>
+            @else
+            <td> </td>
+            @endif
             <td><a href="{{route('posts.show', $post->id )}}"><svg width="19" height="19" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
                         <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
                         <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
