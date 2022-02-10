@@ -10,7 +10,8 @@ class PostController extends Controller
 
     public function index()
     {
-        $posts = Post::all()->sortByDesc('id');
+        $posts = Post::query();
+        $posts = $posts->paginate(5); //->withQueryString();
         // return view('posts.index', [
         //     'posts' => $posts
         // ]);
@@ -21,7 +22,6 @@ class PostController extends Controller
     {
         return view('posts.create');
     }
-
 
 
     public function edit(Post $post)
@@ -46,8 +46,8 @@ class PostController extends Controller
 
     public function update(Post $post, Request $request)
     {
-        $data = self::infoValidation(); 
-        if ($post->image) {
+        $data = self::infoValidation();
+        if (isset($data['image']) and $post->image) {
             deleteFile($post->image);
         }
         $post->update($data);
@@ -81,7 +81,9 @@ class PostController extends Controller
             'content' => 'required|string|between:30,1000',
             'image' => 'nullable|image|max:10000'
         ]);
-        $data['image'] = uploadImage($data['image']);;
+        if (isset($data['image'])) {
+            $data['image'] = uploadImage($data['image']);;
+        }
         return $data;
     }
 }

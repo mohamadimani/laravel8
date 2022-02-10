@@ -63,6 +63,7 @@ Posts list
         @endForeach
     </tbody>
 </table>
+{{$posts->links()}}
 
 
 @endsection
